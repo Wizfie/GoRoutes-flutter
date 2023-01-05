@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:navigasi_go_route/cubits/cubit/login_cubit.dart';
 import 'package:navigasi_go_route/models/category_model.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -12,6 +14,13 @@ class CategoryScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Center(child: Text("Categories")),
           backgroundColor: Colors.redAccent,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  context.read<LoginCubit>().logout();
+                },
+                icon: const Icon(Icons.logout))
+          ],
         ),
         body: ListView.builder(
           itemCount: categories.length,
